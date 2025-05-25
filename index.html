@@ -3,9 +3,146 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Hospital Visit Tracker</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    
+    <header>
+        <h1>Visitation Track</h1>
+        <nav>
+            <ul>
+                <li><a href="#" data-section="home">Home</a></li>
+                <li><a href="#" data-section="patient-registration">Patient Registration</a></li>
+                <li><a href="#" data-section="check-in">Check-In</a></li>
+                <li><a href="#" data-section="check-out">Check-Out</a></li>
+                <li><a href="#" data-section="dashboard">Dashboard</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Home Section -->
+        <section id="home" class="active-section">
+            <h2>Welcome!</h2>
+            <p>Use the navigation above to manage patient visits.</p>
+            <!-- ADDED: How-To-Use Guide -->
+    <div class="how-to-guide">
+        <h3>How to Use This System</h3>
+        <ol>
+            <li>
+                <strong>Register a Patient:</strong> Go to the
+                <a href="#" data-section="patient-registration" class="inline-nav">Patient Registration</a>
+                section to add a new patient's details to the system. Each patient gets a unique ID.
+            </li>
+            <li>
+                <strong>Check-In for a Visit:</strong> Use the
+                <a href="#" data-section="check-in" class="inline-nav">Check-In</a>
+                section. Select the registered patient and the reason for their visit to record their arrival time.
+            </li>
+            <li>
+                <strong>Check-Out a Patient:</strong> In the
+                <a href="#" data-section="check-out" class="inline-nav">Check-Out</a>
+                section, you will see a list of all currently checked-in patients. Add doctor notes and click "Check-Out" to complete their visit.
+            </li>
+            <li>
+                <strong>View the Dashboard:</strong> The
+                <a href="#" data-section="dashboard" class="inline-nav">Dashboard</a>
+                provides a live summary of checked-in patients, total visits for the day, and recent activity.
+            </li>
+        </ol>
+    </div>
+        </section>
+
+        <!-- Patient Registration Section -->
+        <section id="patient-registration" class="hidden-section">
+            <h2>Patient Registration</h2>
+            <form id="patientRegistrationForm">
+                <div class="form-group">
+                    <label for="patientName">Patient Name:</label>
+                    <input type="text" id="patientName" required>
+                </div>
+                <div class="form-group">
+                    <label for="dob">Date of Birth:</label>
+                    <input type="date" id="dob" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Phone Number:</label>
+                    <input type="tel" id="phone" required>
+                </div>
+                <div class="form-group">
+                    <label for="emergencyContact">Emergency Contact (Name - Phone):</label>
+                    <input type="text" id="emergencyContact" required>
+                </div>
+                <button type="submit">Register Patient</button>
+            </form>
+            <div id="registrationMessage" class="message"></div>
+        </section>
+
+        <!-- Check-In Section -->
+        <section id="check-in" class="hidden-section">
+            <h2>Check-In Patient</h2>
+            <form id="checkInForm">
+                <div class="form-group">
+                    <label for="checkInPatientId">Select Patient:</label>
+                    <select id="checkInPatientId" required>
+                        <option value="">-- Select Patient --</option>
+                        <!-- Patient options will be populated by JS -->
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="reasonForVisit">Reason for Visit:</label>
+                    <select id="reasonForVisit" required>
+                        <option value="">-- Select Reason --</option>
+                        <option value="Consultation">Consultation</option>
+                        <option value="Follow-Up">Follow-Up</option>
+                        <option value="Emergency">Emergency</option>
+                    </select>
+                </div>
+                <button type="submit">Check-In</button>
+            </form>
+            <div id="checkInMessage" class="message"></div>
+        </section>
+
+        <!-- Check-Out Section -->
+        <section id="check-out" class="hidden-section">
+            <h2>Check-Out Patient</h2>
+            <div id="checkedInPatientsList">
+                <!-- Checked-in patients will be listed here by JS -->
+                <p>No patients currently checked in.</p>
+            </div>
+            <div id="checkOutMessage" class="message"></div>
+        </section>
+
+        <!-- Dashboard Section -->
+        <section id="dashboard" class="hidden-section">
+            <h2>Dashboard</h2>
+            <div class="dashboard-summary">
+                <div class="summary-item">
+                    <h3>Currently Checked-In</h3>
+                    <p id="currentlyCheckedInCount">0</p>
+                </div>
+                <div class="summary-item">
+                    <h3>Total Visits Today</h3>
+                    <p id="totalVisitsTodayCount">0</p>
+                </div>
+            </div>
+            <div class="dashboard-lists">
+                <h3>Recent Check-Ins (Today)</h3>
+                <ul id="recentCheckInsList">
+                    <li>No recent check-ins.</li>
+                </ul>
+                <h3>Recent Check-Outs (Today)</h3>
+                <ul id="recentCheckOutsList">
+                    <li>No recent check-outs.</li>
+                </ul>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2025 Hospital Visit Tracker</p>
+    </footer>
+
+    <script src="script.js"></script>
 </body>
 </html>
